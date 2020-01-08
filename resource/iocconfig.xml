@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+        
+   <!-- setter injection -->
+   <bean id="user" class="beans.User" scope="singleton">
+   		<property name="name" value="Bob"/>
+    	<property name="age" value="29"/>	
+   </bean>      
+   
+   <!-- constructor injection -->
+   <bean id="person" class="beans.Person">
+   		<constructor-arg index="0" value="Bruce"/>
+   		<constructor-arg index="1" value="Lee"/>
+   		<constructor-arg index="2" value="20"/>
+   </bean>     
+        
+   <!-- Injection for a complex bean.No,byName,byType,constructor -->
+   <bean id="wp" class="beans.Wrapper">
+   		<property name="user" ref="user"/>
+   		<property name="p" ref="person"/>
+   </bean>     
+   
+   <bean id="wp1" class="beans.Wrapper" autowire="byName"/>
+   <bean id="wp2" class="beans.Wrapper" autowire="byType"/>
+        
+</beans>
